@@ -1,0 +1,7 @@
+Jwt.Auth.Sample/.vs/
+Jwt.Auth.Sample/Auth.Contracts/obj/
+Jwt.Auth.Sample/Auth.Contracts/bin/
+Jwt.Auth.Sample/Auth.Middleware.Api/bin/
+Jwt.Auth.Sample/Auth.Middleware.Api/obj/
+Jwt.Auth.Sample/Auth.Service/obj/
+Jwt.Auth.Sample/Auth.Service/bin/
