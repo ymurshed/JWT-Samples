@@ -10,7 +10,7 @@ namespace Auth.Services
         {
             var role =  name.Equals(Constants.AdminUserName, StringComparison.CurrentCultureIgnoreCase) &&
                                 email.Equals(Constants.AdminUserEmail, StringComparison.CurrentCultureIgnoreCase) ? 
-                                Constants.AdminUserRole : Constants.OtherUserRole;
+                                Constants.Admin : Constants.Other;
             return new User
             {
                 Name = name,
@@ -24,10 +24,10 @@ namespace Auth.Services
             // Dummy user list
             return new List<User>
             {
-                new User {Name = "user1", Email = "user1@gmail.com", Role = Constants.OtherUserRole},
-                new User {Name = "user2", Email = "user2@gmail.com", Role = Constants.OtherUserRole},
-                new User {Name = "user3", Email = "user3@gmail.com", Role = Constants.OtherUserRole},
-                new User {Name = Constants.AdminUserName, Email = Constants.AdminUserEmail, Role = Constants.AdminUserRole}
+                new User {Name = "user1", Email = "user1@gmail.com", Role = Constants.Other},
+                new User {Name = "user2", Email = "user2@gmail.com", Role = Constants.Other},
+                new User {Name = "user3", Email = "user3@gmail.com", Role = Constants.Other},
+                new User {Name = Constants.AdminUserName, Email = Constants.AdminUserEmail, Role = Constants.Admin}
             };
         }
     }

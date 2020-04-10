@@ -3,12 +3,12 @@
     public class Constants
     {
         #region User Constants
+        public const string Admin = "Admin";
+        public const string Other = "Other";
+        public const string AdminClaimType = "IsAdmin";
+        public const string AdminUserPolicy = "AdminUserPolicy";
         public const string AdminUserName = "ymurshed";
         public const string AdminUserEmail = "murshed.yaad@gmail.com";
-        public const string AdminUserRole = "admin-user";
-        public const string OtherUserRole = "other-user";
-        public const string AdminUserPolicy = "RequireAdminAccess";
-        public const string OtherUserPolicy = "RequireOtherAccess";
         #endregion
 
         #region Jwt Contants
@@ -20,7 +20,7 @@
         public const string Bearer = "bearer";
         public const string Authorization = "Authorization";
         public const string TokenNotFound = "Token Not Found in Headers";
-        public const string AdminPolicyMissing = "Admin user policy missing!";
+        public const string AdminClaimTypeMissing = "Admin claim type missing!";
         #endregion
     }
 }

@@ -54,7 +54,7 @@ namespace Auth.Api
             services.AddAuthorization(options =>
             {
                 options.AddPolicy(Constants.AdminUserPolicy,
-                    policy => policy.RequireClaim(Constants.AdminUserPolicy));
+                    policy => policy.RequireClaim(Constants.AdminClaimType, true.ToString()));
             });
 
             services.AddControllers();

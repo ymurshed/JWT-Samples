@@ -81,9 +81,9 @@ namespace Auth.Middleware.Api.Middleware
             {
                 var claimsPrincipal = SecurityTokenHandler.ValidateToken(token, _tokenValidationParameters, out var validatedToken);
                 if (!claimsPrincipal.HasClaim(o =>
-                    o.Type.Equals(Constants.AdminUserPolicy) && o.Value.Equals(Constants.AdminUserRole)))
+                    o.Type.Equals(Constants.AdminClaimType) && o.Value.Equals(true.ToString())))
                 {
-                    throw new Exception(Constants.AdminPolicyMissing);
+                    throw new Exception(Constants.AdminClaimTypeMissing);
                 }
             }
             catch (SecurityTokenExpiredException stEx)
@@ -95,7 +95,7 @@ namespace Auth.Middleware.Api.Middleware
             catch (Exception ex)
             {
                 response.Message = ex.Message;
-                response.TokenStatus = ex.Message.Contains(Constants.AdminPolicyMissing) ? TokenStatus.Forbidden : TokenStatus.Invalid;
+                response.TokenStatus = ex.Message.Contains(Constants.AdminClaimTypeMissing) ? TokenStatus.Forbidden : TokenStatus.Invalid;
                 return response;
             }
 
