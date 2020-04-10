@@ -4,7 +4,7 @@ using Auth.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Auth.Middleware.Api.Controllers
+namespace Auth.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
@@ -32,6 +32,7 @@ namespace Auth.Middleware.Api.Controllers
         }
 
         [HttpGet("users")]
+        [Authorize(Policy = Constants.AdminUserPolicy)]
         public IEnumerable<User> GetUsers()
         {
             return _userService.GetAllUsers();

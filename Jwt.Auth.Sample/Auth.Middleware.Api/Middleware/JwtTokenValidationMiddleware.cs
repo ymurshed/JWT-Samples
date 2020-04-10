@@ -22,7 +22,8 @@ namespace Auth.Middleware.Api.Middleware
             Valid = 200,
             Invalid = 498,
             Expired = 440,
-            NotPresent = 449
+            NotPresent = 449,
+            Forbidden = 403
         }
 
         private class TokenResponse
@@ -55,8 +56,9 @@ namespace Auth.Middleware.Api.Middleware
                 }
                 else
                 {
-                    context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-                    var message = $"{(int) tokenResponse.TokenStatus} : {tokenResponse.Message}";
+                    var message = $"{(int)tokenResponse.TokenStatus} : {tokenResponse.Message}";
+                    context.Response.StatusCode = tokenResponse.TokenStatus == TokenStatus.Forbidden ? 
+                                                    StatusCodes.Status403Forbidden : StatusCodes.Status401Unauthorized;
                     await context.Response.WriteAsync(message);
                 }
             }
@@ -81,19 +83,19 @@ namespace Auth.Middleware.Api.Middleware
                 if (!claimsPrincipal.HasClaim(o =>
                     o.Type.Equals(Constants.AdminUserPolicy) && o.Value.Equals(Constants.AdminUserRole)))
                 {
-                    throw new Exception("Admin user policy missing!");
+                    throw new Exception(Constants.AdminPolicyMissing);
                 }
             }
             catch (SecurityTokenExpiredException stEx)
             {
-                response.TokenStatus = TokenStatus.Expired;
                 response.Message = stEx.Message;
+                response.TokenStatus = TokenStatus.Expired;
                 return response;
             }
             catch (Exception ex)
             {
-                response.TokenStatus = TokenStatus.Invalid;
                 response.Message = ex.Message;
+                response.TokenStatus = ex.Message.Contains(Constants.AdminPolicyMissing) ? TokenStatus.Forbidden : TokenStatus.Invalid;
                 return response;
             }
 

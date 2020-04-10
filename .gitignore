@@ -5,3 +5,5 @@ Jwt.Auth.Sample/Auth.Middleware.Api/bin/
 Jwt.Auth.Sample/Auth.Middleware.Api/obj/
 Jwt.Auth.Sample/Auth.Service/obj/
 Jwt.Auth.Sample/Auth.Service/bin/
+Jwt.Auth.Sample/Auth.Api/bin/
+Jwt.Auth.Sample/Auth.Api/obj/
