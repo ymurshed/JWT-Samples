@@ -58,6 +58,7 @@ namespace Auth.Services
             return new[]
             {
                 new Claim(JwtRegisteredClaimNames.UniqueName, user.Name),
+                new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 new Claim(Constants.AdminClaimType, roleClaimValue.ToString())
             };
         }
