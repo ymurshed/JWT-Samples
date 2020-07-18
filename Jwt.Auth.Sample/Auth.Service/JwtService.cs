@@ -54,12 +54,13 @@ namespace Auth.Services
 
         private static IEnumerable<Claim> GetClaims(User user)
         {
-            var roleClaimValue = user.Role.Equals(Constants.Admin, StringComparison.CurrentCultureIgnoreCase);
+            var isAdmin = user.Role.Equals(Constants.Admin, StringComparison.CurrentCultureIgnoreCase);
             return new[]
             {
-                new Claim(JwtRegisteredClaimNames.UniqueName, user.Name),
-                new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                new Claim(Constants.AdminClaimType, roleClaimValue.ToString())
+                new Claim(ClaimTypes.Name, user.Name),
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.Role, user.Role),
+                new Claim(Constants.AdminClaimType, isAdmin.ToString())
             };
         }
         #endregion

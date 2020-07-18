@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Auth.Contracts;
 using Auth.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -32,10 +33,18 @@ namespace Auth.Api.Controllers
         }
 
         [HttpGet("users")]
-        [Authorize(Policy = Constants.AdminUserPolicy)]
+        [Authorize(Policy = Constants.AdminUserClaimPolicy)]
         public IEnumerable<User> GetUsers()
         {
             return _userService.GetAllUsers();
+        }
+
+        [HttpGet("adminusers")]
+        [Authorize(Policy = Constants.AdminUserRolePolicy)]
+        public IEnumerable<User> GetAdminUsers()
+        {
+            var users= _userService.GetAllUsers();
+            return users.Where(x => x.Role.Equals(Constants.Admin)).Select(x => x).ToList();
         }
     }
 }

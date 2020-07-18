@@ -53,8 +53,8 @@ namespace Auth.Api
             // Add admin user policy
             services.AddAuthorization(options =>
             {
-                options.AddPolicy(Constants.AdminUserPolicy,
-                    policy => policy.RequireClaim(Constants.AdminClaimType, true.ToString()));
+                options.AddPolicy(Constants.AdminUserRolePolicy, policy => policy.RequireRole(Constants.Other));
+                options.AddPolicy(Constants.AdminUserClaimPolicy, policy => policy.RequireClaim(Constants.AdminClaimType, true.ToString()));
             });
 
             services.AddControllers();

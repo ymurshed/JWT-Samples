@@ -6,7 +6,8 @@
         public const string Admin = "Admin";
         public const string Other = "Other";
         public const string AdminClaimType = "IsAdmin";
-        public const string AdminUserPolicy = "AdminUserPolicy";
+        public const string AdminUserClaimPolicy = "AdminUserClaimPolicy";
+        public const string AdminUserRolePolicy = "AdminUserRolePolicy";
         public const string AdminUserName = "ymurshed";
         public const string AdminUserEmail = "murshed.yaad@gmail.com";
         #endregion
