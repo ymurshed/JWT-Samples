@@ -34,7 +34,7 @@ namespace Auth.Middleware.Api
             }
 
             app.UseRouting();
-            app.UseJwtTokenValidation(Configuration);
+            app.UseMiddleware<JwtTokenValidationMiddleware>();
             app.UseAuthentication();
             app.UseAuthorization();
 

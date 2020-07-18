@@ -31,7 +31,7 @@ namespace Auth.Api
                 .AddJwtBearer(options =>
                 {
                     options.TokenValidationParameters = new JwtService(Configuration).GeTokenValidationParameters();
-                    
+
                     options.Events = new JwtBearerEvents
                     {
                         OnChallenge = context =>
